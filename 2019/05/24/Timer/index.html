@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="John Doe">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="John Doe">
+    
+    <meta name="keywords" content="hexo,hexo-Lee,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Timer学习 · fi3estudy&#39;s Studio of NJUST</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Mr.Lee&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Timer学习</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">Mr.Lee's Blog.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            Timer学习
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">3.5k</span>阅读时长: <span class="post-count reading-time">16 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/05/24</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>​      在java中一个完整定时任务需要由Timer、TimerTask两个类来配合完成。 API中是这样定义他们的，Timer：一种工具，线程用其安排以后在后台线程中执行的任务。可安排任务执行一次，或者定期重复执行。由TimerTask：Timer 安排为一次执行或重复执行的任务。我们可以这样理解<strong>Timer是一种定时器工具，用来在一个后台线程计划执行指定任务，而TimerTask一个抽象类，它的子类代表一个可以被Timer计划的任务。</strong></p>
+<h2 id="Timer类"><a href="#Timer类" class="headerlink" title="Timer类"></a><strong>Timer类</strong></h2><p>​      在工具类Timer中，提供了四个构造方法，每个构造方法都启动了计时器线程，同时Timer类可以保证多个线程可以共享单个Timer对象而无需进行外部同步，所以Timer类是线程安全的。但是由于每一个Timer对象对应的是单个后台线程，用于顺序执行所有的计时器任务，一般情况下我们的线程任务执行所消耗的时间应该非常短，但是由于特殊情况导致某个定时器任务执行的时间太长，那么他就会“独占”计时器的任务执行线程，其后的所有线程都必须等待它执行完，这就会延迟后续任务的执行，使这些任务堆积在一起，具体情况我们后面分析。</p>
+<p>​      当程序初始化完成Timer后，定时任务就会按照我们设定的时间去执行，Timer提供了schedule方法，该方法有多中重载方式来适应不同的情况，如下：</p>
+<p>​      schedule(TimerTask task, Date time)：安排在指定的时间执行指定的任务。</p>
+<p>​      schedule(TimerTask task, Date firstTime, long period) ：安排指定的任务在指定的时间开始进行重复的固定延迟执行。</p>
+<p>​      schedule(TimerTask task, long delay) ：安排在指定延迟后执行指定的任务。</p>
+<p>​      schedule(TimerTask task, long delay, long period) ：安排指定的任务从指定的延迟后开始进行重复的固定延迟执行。</p>
+<p>​      同时也重载了scheduleAtFixedRate方法，scheduleAtFixedRate方法与schedule相同，只不过他们的侧重点不同，区别后面分析。</p>
+<p>​      scheduleAtFixedRate(TimerTask task, Date firstTime, long period)：安排指定的任务在指定的时间开始进行重复的固定速率执行。</p>
+<p>​      scheduleAtFixedRate(TimerTask task, long delay, long period)：安排指定的任务在指定的延迟后开始进行重复的固定速率执行。</p>
+<h2 id="TimerTask"><a href="#TimerTask" class="headerlink" title="TimerTask"></a><strong>TimerTask</strong></h2><p>​      TimerTask类是一个抽象类，由Timer 安排为一次执行或重复执行的任务。它有一个抽象方法run()方法，该方法用于执行相应计时器任务要执行的操作。因此每一个具体的任务类都必须继承TimerTask，然后重写run()方法。</p>
+<p>​      另外它还有两个非抽象的方法：</p>
+<p>​      boolean cancel()：取消此计时器任务。</p>
+<p>​      long scheduledExecutionTime()：返回此任务最近实际执行的安排执行时间。</p>
+<h1 id="二、实例"><a href="#二、实例" class="headerlink" title="二、实例"></a>二、实例</h1><h3 id="2-1、指定延迟时间执行定时任务"><a href="#2-1、指定延迟时间执行定时任务" class="headerlink" title="2.1、指定延迟时间执行定时任务"></a>2.1、指定延迟时间执行定时任务</h3><p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>public class TimerTest01 {  </li>
+<li>​    Timer timer;  </li>
+<li>​    public TimerTest01(int time){  </li>
+<li>​        timer = new Timer();  </li>
+<li>​        timer.schedule(new TimerTaskTest01(), time * 1000);  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public static void main(String[] args) {  </li>
+<li>​        System.out.println(“timer begin….”);  </li>
+<li>​        new TimerTest01(3);  </li>
+<li>​    }  </li>
+<li>}  </li>
+<li></li>
+<li>public class TimerTaskTest01 extends TimerTask{  </li>
+<li></li>
+<li>​    public void run() {  </li>
+<li>​        System.out.println(“Time’s up!!!!”);  </li>
+<li>​    }  </li>
+<li>}  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">public class TimerTest01 &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    Timer timer;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public TimerTest01(int time)&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        timer = new Timer();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        timer.schedule(new TimerTaskTest01(), time * 1000);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;timer begin....&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        new TimerTest01(3);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class TimerTaskTest01 extends TimerTask&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void run() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;Time&apos;s up!!!!&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​      运行结果：</p>
+<ol>
+<li>首先打印：timer begin….  </li>
+<li></li>
+<li>3秒后打印：Time’s up!!!!  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">首先打印：timer begin....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3秒后打印：Time&apos;s up!!!!</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-2、在指定时间执行定时任务"><a href="#2-2、在指定时间执行定时任务" class="headerlink" title="2.2、在指定时间执行定时任务"></a>2.2、在指定时间执行定时任务</h3><p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>public class TimerTest02 {  </li>
+<li>​    Timer timer;  </li>
+<li>​      </li>
+<li>​    public TimerTest02(){  </li>
+<li>​        Date time = getTime();  </li>
+<li>​        System.out.println(“指定时间time=” + time);  </li>
+<li>​        timer = new Timer();  </li>
+<li>​        timer.schedule(new TimerTaskTest02(), time);  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public Date getTime(){  </li>
+<li>​        Calendar calendar = Calendar.getInstance();  </li>
+<li>​        calendar.set(Calendar.HOUR_OF_DAY, 11);  </li>
+<li>​        calendar.set(Calendar.MINUTE, 39);  </li>
+<li>​        calendar.set(Calendar.SECOND, 00);  </li>
+<li>​        Date time = calendar.getTime();  </li>
+<li>​          </li>
+<li>​        return time;  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public static void main(String[] args) {  </li>
+<li>​        new TimerTest02();  </li>
+<li>​    }  </li>
+<li>}  </li>
+<li></li>
+<li>public class TimerTaskTest02 extends TimerTask{  </li>
+<li></li>
+<li>​    @Override  </li>
+<li>​    public void run() {  </li>
+<li>​        System.out.println(“指定时间执行线程任务…”);  </li>
+<li>​    }  </li>
+<li>}  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line">public class TimerTest02 &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    Timer timer;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public TimerTest02()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Date time = getTime();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;指定时间time=&quot; + time);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        timer = new Timer();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        timer.schedule(new TimerTaskTest02(), time);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public Date getTime()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Calendar calendar = Calendar.getInstance();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        calendar.set(Calendar.HOUR_OF_DAY, 11);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        calendar.set(Calendar.MINUTE, 39);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        calendar.set(Calendar.SECOND, 00);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Date time = calendar.getTime();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        return time;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        new TimerTest02();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class TimerTaskTest02 extends TimerTask&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void run() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;指定时间执行线程任务...&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​      当时间到达11:39:00时就会执行该线程任务，当然大于该时间也会执行！！执行结果为：</p>
+<p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>指定时间time=Tue Jun 10 11:39:00 CST 2014  </li>
+<li>指定时间执行线程任务…  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">指定时间time=Tue Jun 10 11:39:00 CST 2014</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">指定时间执行线程任务...</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3、在延迟指定时间后以指定的间隔时间循环执行定时任务"><a href="#2-3、在延迟指定时间后以指定的间隔时间循环执行定时任务" class="headerlink" title="2.3、在延迟指定时间后以指定的间隔时间循环执行定时任务"></a>2.3、在延迟指定时间后以指定的间隔时间循环执行定时任务</h3><p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>public class TimerTest03 {  </li>
+<li>​    Timer timer;  </li>
+<li>​      </li>
+<li>​    public TimerTest03(){  </li>
+<li>​        timer = new Timer();  </li>
+<li>​        timer.schedule(new TimerTaskTest03(), 1000, 2000);  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public static void main(String[] args) {  </li>
+<li>​        new TimerTest03();  </li>
+<li>​    }  </li>
+<li>}  </li>
+<li></li>
+<li>public class TimerTaskTest03 extends TimerTask{  </li>
+<li></li>
+<li>​    @Override  </li>
+<li>​    public void run() {  </li>
+<li>​        Date date = new Date(this.scheduledExecutionTime());  </li>
+<li>​        System.out.println(“本次执行该线程的时间为：” + date);  </li>
+<li>​    }  </li>
+<li>}  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">public class TimerTest03 &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    Timer timer;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public TimerTest03()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        timer = new Timer();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        timer.schedule(new TimerTaskTest03(), 1000, 2000);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        new TimerTest03();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class TimerTaskTest03 extends TimerTask&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void run() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Date date = new Date(this.scheduledExecutionTime());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;本次执行该线程的时间为：&quot; + date);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​      运行结果:</p>
+<p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>本次执行该线程的时间为：Tue Jun 10 21:19:47 CST 2014  </li>
+<li>本次执行该线程的时间为：Tue Jun 10 21:19:49 CST 2014  </li>
+<li>本次执行该线程的时间为：Tue Jun 10 21:19:51 CST 2014  </li>
+<li>本次执行该线程的时间为：Tue Jun 10 21:19:53 CST 2014  </li>
+<li>本次执行该线程的时间为：Tue Jun 10 21:19:55 CST 2014  </li>
+<li>本次执行该线程的时间为：Tue Jun 10 21:19:57 CST 2014  </li>
+<li>……………..  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">本次执行该线程的时间为：Tue Jun 10 21:19:47 CST 2014</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">本次执行该线程的时间为：Tue Jun 10 21:19:49 CST 2014</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">本次执行该线程的时间为：Tue Jun 10 21:19:51 CST 2014</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">本次执行该线程的时间为：Tue Jun 10 21:19:53 CST 2014</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">本次执行该线程的时间为：Tue Jun 10 21:19:55 CST 2014</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">本次执行该线程的时间为：Tue Jun 10 21:19:57 CST 2014</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.................</span><br></pre></td></tr></table></figure>
+
+<p>​      对于这个线程任务,如果我们不将该任务停止,他会一直运行下去。</p>
+<p>​      对于上面三个实例，LZ只是简单的演示了一下，同时也没有讲解scheduleAtFixedRate方法的例子，其实该方法与schedule方法一样！</p>
+<h3 id="2-4、分析schedule和scheduleAtFixedRate"><a href="#2-4、分析schedule和scheduleAtFixedRate" class="headerlink" title="2.4、分析schedule和scheduleAtFixedRate"></a>2.4、分析schedule和scheduleAtFixedRate</h3><p>​      <strong>1、schedule(TimerTask task, Date time)、schedule(TimerTask task, long delay)</strong></p>
+<p>​      对于这两个方法而言，如果指定的计划执行时间scheduledExecutionTime&lt;= systemCurrentTime，则task会被立即执行。scheduledExecutionTime不会因为某一个task的过度执行而改变。</p>
+<p>​      <strong>2、schedule(TimerTask task, Date firstTime, long period)、schedule(TimerTask task, long delay, long period)</strong></p>
+<p>​      这两个方法与上面两个就有点儿不同的，前面提过Timer的计时器任务会因为前一个任务执行时间较长而延时。在这两个方法中，每一次执行的task的计划时间会随着前一个task的实际时间而发生改变，也就是scheduledExecutionTime(n+1)=realExecutionTime(n)+periodTime。也就是说如果第n个task由于某种情况导致这次的执行时间过程，最后导致systemCurrentTime&gt;= scheduledExecutionTime(n+1)，这是第n+1个task并不会因为到时了而执行，他会等待第n个task执行完之后再执行，那么这样势必会导致n+2个的执行实现scheduledExecutionTime放生改变即scheduledExecutionTime(n+2) = realExecutionTime(n+1)+periodTime。所以这两个方法更加注重保存间隔时间的稳定。</p>
+<p>​      <strong>3、scheduleAtFixedRate(TimerTask task, Date firstTime, long period)、scheduleAtFixedRate(TimerTask task, long delay, long period)</strong></p>
+<p>​      在前面也提过scheduleAtFixedRate与schedule方法的侧重点不同，schedule方法侧重保存间隔时间的稳定，而scheduleAtFixedRate方法更加侧重于保持执行频率的稳定。为什么这么说，原因如下。在schedule方法中会因为前一个任务的延迟而导致其后面的定时任务延时，而scheduleAtFixedRate方法则不会，如果第n个task执行时间过长导致systemCurrentTime&gt;= scheduledExecutionTime(n+1)，则不会做任何等待他会立即执行第n+1个task，所以scheduleAtFixedRate方法执行时间的计算方法不同于schedule，而是scheduledExecutionTime(n)=firstExecuteTime +n*periodTime，该计算方法永远保持不变。所以scheduleAtFixedRate更加侧重于保持执行频率的稳定。</p>
+<h1 id="三、Timer的缺陷"><a href="#三、Timer的缺陷" class="headerlink" title="三、Timer的缺陷"></a>三、Timer的缺陷</h1><h2 id="3-1、Timer的缺陷"><a href="#3-1、Timer的缺陷" class="headerlink" title="3.1、Timer的缺陷"></a>3.1、Timer的缺陷</h2><p>​      Timer计时器可以定时（指定时间执行任务）、延迟（延迟5秒执行任务）、周期性地执行任务（每隔个1秒执行任务），但是，Timer存在一些缺陷。首先Timer对调度的支持是基于绝对时间的，而不是相对时间，所以它对系统时间的改变非常敏感。其次Timer线程是不会捕获异常的，如果TimerTask抛出的了未检查异常则会导致Timer线程终止，同时Timer也不会重新恢复线程的执行，他会错误的认为整个Timer线程都会取消。同时，已经被安排单尚未执行的TimerTask也不会再执行了，新的任务也不能被调度。故如果TimerTask抛出未检查的异常，Timer将会产生无法预料的行为。</p>
+<p>​      <strong>1、Timer管理时间延迟缺陷</strong></p>
+<p>​      前面Timer在执行定时任务时只会创建一个线程任务，如果存在多个线程，若其中某个线程因为某种原因而导致线程任务执行时间过长，超过了两个任务的间隔时间，会发生一些缺陷：</p>
+<p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>public class TimerTest04 {  </li>
+<li>​    private Timer timer;  </li>
+<li>​    public long start;     </li>
+<li>​      </li>
+<li>​    public TimerTest04(){  </li>
+<li>​        this.timer = new Timer();  </li>
+<li>​        start = System.currentTimeMillis();  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public void timerOne(){  </li>
+<li>​        timer.schedule(new TimerTask() {  </li>
+<li>​            public void run() {  </li>
+<li>​                System.out.println(“timerOne invoked ,the time:” + (System.currentTimeMillis() - start));  </li>
+<li>​                try {  </li>
+<li>​                    Thread.sleep(4000);    //线程休眠3000  </li>
+<li>​                } catch (InterruptedException e) {  </li>
+<li>​                    e.printStackTrace();  </li>
+<li>​                }  </li>
+<li>​            }  </li>
+<li>​        }, 1000);  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public void timerTwo(){  </li>
+<li>​        timer.schedule(new TimerTask() {  </li>
+<li>​            public void run() {  </li>
+<li>​                System.out.println(“timerOne invoked ,the time:” + (System.currentTimeMillis() - start));  </li>
+<li>​            }  </li>
+<li>​        }, 3000);  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public static void main(String[] args) throws Exception {  </li>
+<li>​        TimerTest04 test = new TimerTest04();  </li>
+<li>​          </li>
+<li>​        test.timerOne();  </li>
+<li>​        test.timerTwo();  </li>
+<li>​    }  </li>
+<li>}  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line">public class TimerTest04 &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private Timer timer;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public long start;   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public TimerTest04()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        this.timer = new Timer();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        start = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void timerOne()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        timer.schedule(new TimerTask() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            public void run() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                System.out.println(&quot;timerOne invoked ,the time:&quot; + (System.currentTimeMillis() - start));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                try &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                    Thread.sleep(4000);    //线程休眠3000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                    e.printStackTrace();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;, 1000);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void timerTwo()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        timer.schedule(new TimerTask() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            public void run() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                System.out.println(&quot;timerOne invoked ,the time:&quot; + (System.currentTimeMillis() - start));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;, 3000);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        TimerTest04 test = new TimerTest04();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        test.timerOne();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        test.timerTwo();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​      按照我们正常思路，timerTwo应该是在3s后执行，其结果应该是：</p>
+<p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>timerOne invoked ,the time:1001  </li>
+<li>timerOne invoked ,the time:3001  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">timerOne invoked ,the time:1001</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">timerOne invoked ,the time:3001</span><br></pre></td></tr></table></figure>
+
+<p>​      但是事与愿违，timerOne由于sleep(4000)，休眠了4S，同时Timer内部是一个线程，导致timeOne所需的时间超过了间隔时间，结果：</p>
+<p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>timerOne invoked ,the time:1000  </li>
+<li>timerOne invoked ,the time:5000  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">timerOne invoked ,the time:1000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">timerOne invoked ,the time:5000</span><br></pre></td></tr></table></figure>
+
+<p>​      <strong>2、Timer抛出异常缺陷</strong></p>
+<p>​      如果TimerTask抛出RuntimeException，Timer会终止所有任务的运行。如下：</p>
+<p>[html]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>public class TimerTest04 {  </li>
+<li>​    private Timer timer;  </li>
+<li>​      </li>
+<li>​    public TimerTest04(){  </li>
+<li>​        this.timer = new Timer();  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public void timerOne(){  </li>
+<li>​        timer.schedule(new TimerTask() {  </li>
+<li>​            public void run() {  </li>
+<li>​                throw new RuntimeException();  </li>
+<li>​            }  </li>
+<li>​        }, 1000);  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public void timerTwo(){  </li>
+<li>​        timer.schedule(new TimerTask() {  </li>
+<li>​              </li>
+<li>​            public void run() {  </li>
+<li>​                System.out.println(“我会不会执行呢？？”);  </li>
+<li>​            }  </li>
+<li>​        }, 1000);  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public static void main(String[] args) {  </li>
+<li>​        TimerTest04 test = new TimerTest04();  </li>
+<li>​        test.timerOne();  </li>
+<li>​        test.timerTwo();  </li>
+<li>​    }  </li>
+<li>}  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line">public class TimerTest04 &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private Timer timer;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public TimerTest04()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        this.timer = new Timer();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void timerOne()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        timer.schedule(new TimerTask() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            public void run() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                throw new RuntimeException();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;, 1000);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void timerTwo()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        timer.schedule(new TimerTask() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            public void run() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                System.out.println(&quot;我会不会执行呢？？&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;, 1000);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        TimerTest04 test = new TimerTest04();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        test.timerOne();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        test.timerTwo();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​      运行结果：timerOne抛出异常，导致timerTwo任务终止。</p>
+<p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>Exception in thread “Timer-0” java.lang.RuntimeException  </li>
+<li>​    at com.chenssy.timer.TimerTest04$1.run(TimerTest04.java:25)  </li>
+<li>​    at java.util.TimerThread.mainLoop(Timer.java:555)  </li>
+<li>​    at java.util.TimerThread.run(Timer.java:505)  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread &quot;Timer-0&quot; java.lang.RuntimeException</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    at com.chenssy.timer.TimerTest04$1.run(TimerTest04.java:25)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    at java.util.TimerThread.mainLoop(Timer.java:555)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    at java.util.TimerThread.run(Timer.java:505)</span><br></pre></td></tr></table></figure>
+
+<p>​      对于Timer的缺陷，我们可以考虑 ScheduledThreadPoolExecutor 来替代。Timer是基于绝对时间的，对系统时间比较敏感，而ScheduledThreadPoolExecutor 则是基于相对时间；Timer是内部是单一线程，而ScheduledThreadPoolExecutor内部是个线程池，所以可以支持多个任务并发执行。</p>
+<h2 id="3-2、用ScheduledExecutorService替代Timer"><a href="#3-2、用ScheduledExecutorService替代Timer" class="headerlink" title="3.2、用ScheduledExecutorService替代Timer"></a>3.2、用ScheduledExecutorService替代Timer</h2><p>​      <strong>1、解决问题一：</strong></p>
+<p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>public class ScheduledExecutorTest {  </li>
+<li>​    private  ScheduledExecutorService scheduExec;  </li>
+<li>​      </li>
+<li>​    public long start;  </li>
+<li>​      </li>
+<li>​    ScheduledExecutorTest(){  </li>
+<li>​        this.scheduExec =  Executors.newScheduledThreadPool(2);    </li>
+<li>​        this.start = System.currentTimeMillis();  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public void timerOne(){  </li>
+<li>​        scheduExec.schedule(new Runnable() {  </li>
+<li>​            public void run() {  </li>
+<li>​                System.out.println(“timerOne,the time:” + (System.currentTimeMillis() - start));  </li>
+<li>​                try {  </li>
+<li>​                    Thread.sleep(4000);  </li>
+<li>​                } catch (InterruptedException e) {  </li>
+<li>​                    e.printStackTrace();  </li>
+<li>​                }  </li>
+<li>​            }  </li>
+<li>​        },1000,TimeUnit.MILLISECONDS);  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public void timerTwo(){  </li>
+<li>​        scheduExec.schedule(new Runnable() {  </li>
+<li>​            public void run() {  </li>
+<li>​                System.out.println(“timerTwo,the time:” + (System.currentTimeMillis() - start));  </li>
+<li>​            }  </li>
+<li>​        },2000,TimeUnit.MILLISECONDS);  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public static void main(String[] args) {  </li>
+<li>​        ScheduledExecutorTest test = new ScheduledExecutorTest();  </li>
+<li>​        test.timerOne();  </li>
+<li>​        test.timerTwo();  </li>
+<li>​    }  </li>
+<li>}  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line">public class ScheduledExecutorTest &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private  ScheduledExecutorService scheduExec;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public long start;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ScheduledExecutorTest()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        this.scheduExec =  Executors.newScheduledThreadPool(2);  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        this.start = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void timerOne()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        scheduExec.schedule(new Runnable() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            public void run() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                System.out.println(&quot;timerOne,the time:&quot; + (System.currentTimeMillis() - start));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                try &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                    Thread.sleep(4000);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                    e.printStackTrace();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;,1000,TimeUnit.MILLISECONDS);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void timerTwo()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        scheduExec.schedule(new Runnable() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            public void run() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                System.out.println(&quot;timerTwo,the time:&quot; + (System.currentTimeMillis() - start));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;,2000,TimeUnit.MILLISECONDS);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        ScheduledExecutorTest test = new ScheduledExecutorTest();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        test.timerOne();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        test.timerTwo();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​      运行结果：</p>
+<p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>timerOne,the time:1003  </li>
+<li>timerTwo,the time:2005  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">timerOne,the time:1003</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">timerTwo,the time:2005</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​      <strong>2、解决问题二</strong></p>
+<p>​     </p>
+<p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>public class ScheduledExecutorTest {  </li>
+<li>​    private  ScheduledExecutorService scheduExec;  </li>
+<li>​      </li>
+<li>​    public long start;  </li>
+<li>​      </li>
+<li>​    ScheduledExecutorTest(){  </li>
+<li>​        this.scheduExec =  Executors.newScheduledThreadPool(2);    </li>
+<li>​        this.start = System.currentTimeMillis();  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public void timerOne(){  </li>
+<li>​        scheduExec.schedule(new Runnable() {  </li>
+<li>​            public void run() {  </li>
+<li>​                throw new RuntimeException();  </li>
+<li>​            }  </li>
+<li>​        },1000,TimeUnit.MILLISECONDS);  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public void timerTwo(){  </li>
+<li>​        scheduExec.scheduleAtFixedRate(new Runnable() {  </li>
+<li>​            public void run() {  </li>
+<li>​                System.out.println(“timerTwo invoked …..”);  </li>
+<li>​            }  </li>
+<li>​        },2000,500,TimeUnit.MILLISECONDS);  </li>
+<li>​    }  </li>
+<li>​      </li>
+<li>​    public static void main(String[] args) {  </li>
+<li>​        ScheduledExecutorTest test = new ScheduledExecutorTest();  </li>
+<li>​        test.timerOne();  </li>
+<li>​        test.timerTwo();  </li>
+<li>​    }  </li>
+<li>}  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line">public class ScheduledExecutorTest &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private  ScheduledExecutorService scheduExec;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public long start;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ScheduledExecutorTest()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        this.scheduExec =  Executors.newScheduledThreadPool(2);  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        this.start = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void timerOne()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        scheduExec.schedule(new Runnable() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            public void run() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                throw new RuntimeException();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;,1000,TimeUnit.MILLISECONDS);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void timerTwo()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        scheduExec.scheduleAtFixedRate(new Runnable() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            public void run() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                System.out.println(&quot;timerTwo invoked .....&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;,2000,500,TimeUnit.MILLISECONDS);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        ScheduledExecutorTest test = new ScheduledExecutorTest();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        test.timerOne();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        test.timerTwo();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​     运行结果：</p>
+<p>[java]</p>
+<p>view plain</p>
+<p> <a href="https://blog.csdn.net/chenssy/article/details/32703499#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li>timerTwo invoked …..  </li>
+<li>timerTwo invoked …..  </li>
+<li>timerTwo invoked …..  </li>
+<li>timerTwo invoked …..  </li>
+<li>timerTwo invoked …..  </li>
+<li>timerTwo invoked …..  </li>
+<li>timerTwo invoked …..  </li>
+<li>timerTwo invoked …..  </li>
+<li>timerTwo invoked …..  </li>
+<li>……………………  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">timerTwo invoked .....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">timerTwo invoked .....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">timerTwo invoked .....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">timerTwo invoked .....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">timerTwo invoked .....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">timerTwo invoked .....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">timerTwo invoked .....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">timerTwo invoked .....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">timerTwo invoked .....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">........................</span><br></pre></td></tr></table></figure>
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/05/24/笔记（一）/" title="Hexo学习（一）">
+                    <div class="nextTitle">Hexo学习（一）</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:zeyunlee@foxmail.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/fi3estudy" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/wechat.jpg">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1345166&auto=1&height=66"></iframe>
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、简介"><span class="toc-number">1.</span> <span class="toc-text">一、简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Timer类"><span class="toc-number">1.1.</span> <span class="toc-text">Timer类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TimerTask"><span class="toc-number">1.2.</span> <span class="toc-text">TimerTask</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、实例"><span class="toc-number">2.</span> <span class="toc-text">二、实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1、指定延迟时间执行定时任务"><span class="toc-number">2.0.1.</span> <span class="toc-text">2.1、指定延迟时间执行定时任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2、在指定时间执行定时任务"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.2、在指定时间执行定时任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3、在延迟指定时间后以指定的间隔时间循环执行定时任务"><span class="toc-number">2.0.3.</span> <span class="toc-text">2.3、在延迟指定时间后以指定的间隔时间循环执行定时任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4、分析schedule和scheduleAtFixedRate"><span class="toc-number">2.0.4.</span> <span class="toc-text">2.4、分析schedule和scheduleAtFixedRate</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、Timer的缺陷"><span class="toc-number">3.</span> <span class="toc-text">三、Timer的缺陷</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1、Timer的缺陷"><span class="toc-number">3.1.</span> <span class="toc-text">3.1、Timer的缺陷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2、用ScheduledExecutorService替代Timer"><span class="toc-number">3.2.</span> <span class="toc-text">3.2、用ScheduledExecutorService替代Timer</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 8
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href="/2019/06/13/双指针/">双指针题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href="/2019/06/13/二叉树/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/images/">Image</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/Timer/">Timer学习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/笔记（一）/">Hexo学习（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/笔记（一） - 副本/">JDBC学习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/工厂设计模式/">工厂设计模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/代理设计模式/">java静态代理与动态代理</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "John Doe"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-tororo"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+

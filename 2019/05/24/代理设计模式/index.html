@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>JDBC学习 · fi3estudy&#39;s Studio of NJUST</title>
+    <title>java静态代理与动态代理 · fi3estudy&#39;s Studio of NJUST</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">Mr.Lee&#39;s Blog.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">JDBC学习</a>
+                <a href="#" class="post-name">java静态代理与动态代理</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            JDBC学习
+            java静态代理与动态代理
             <!-- 404 -->
             
         </h1>
@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">397</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,68 +395,65 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="事务-amp-数据库连接池-amp-DBUtils"><a href="#事务-amp-数据库连接池-amp-DBUtils" class="headerlink" title="事务&amp;数据库连接池&amp;DBUtils"></a>事务&amp;数据库连接池&amp;DBUtils</h1><h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><blockquote>
-<p>Transaction  其实指的一组操作，里面包含许多个单一的逻辑。只要有一个逻辑没有执行成功，那么都算失败。 所有的数据都回归到最初的状态(回滚)</p>
-</blockquote>
+        <h3 id="代理模式简介"><a href="#代理模式简介" class="headerlink" title="代理模式简介"></a>代理模式简介</h3><p>代理模式（proxy）指的是为一个对象提供一个代理以控制外界对该对象的访问，比如有些情况下对象A不能直接访问对象B，此时可以为对象B创建一个代理C，然后对象A通过访问代理C来间接访问对象B。比如你看上了你女性朋友的闺蜜，此时你可以通过你的朋友来跟她闺蜜进行一些沟通。<br>有的时候我们希望增强某个方法的功能，但是有不方便直接修改该方法，此时也可通过代理来实现，即在该方法执行的前后做一些事情。比如你要打官司，但是法律上的事情你可能不清楚，此时需要请一名代理律师，让这个代理律师帮助你去做一些事情。</p>
+<p>代理的模式的优点：</p>
 <ul>
-<li>为什么要有事务?</li>
+<li>提高程序的扩展性和可复用性</li>
+<li>保护目标对象</li>
 </ul>
-<blockquote>
-<p>为了确保逻辑的成功。 例子： 银行的转账。 </p>
-</blockquote>
-<h3 id="使用命令行方式演示事务。"><a href="#使用命令行方式演示事务。" class="headerlink" title="使用命令行方式演示事务。"></a>使用命令行方式演示事务。</h3><ul>
-<li><p>开启事务</p>
-<p>start transaction;</p>
-</li>
-<li><p>提交或者回滚事务</p>
-<p>commit; 提交事务， 数据将会写到磁盘上的数据库<br>rollback ;  数据回滚，回到最初的状态。</p>
-</li>
+<p>代理模式分为两种：静态代理和动态代理。</p>
+<h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><p>代理类和相关的方法直接在代码中写死。下面以你看上了你女性朋友娜娜的闺蜜小曼举例：</p>
+<p>首先定义一个接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package com.monkey1024.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 女神</span><br><span class="line"> */</span><br><span class="line">public interface Beauty &#123;</span><br><span class="line"></span><br><span class="line">    void eat();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建小曼的类并实现上面的接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package com.monkey1024.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 你的目标对象小曼</span><br><span class="line"> * 你女性朋友娜娜的闺蜜</span><br><span class="line"> */</span><br><span class="line">public class XiaoMan implements Beauty &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        System.out.println(&quot;小曼吃饭&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建娜娜的类实现上面接口，娜娜是中间人，所以实现方式不太一样，这里的eat方法中要调用目标对象上的eat方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package com.monkey1024.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 中间人，你的女性朋友娜娜</span><br><span class="line"> */</span><br><span class="line">public class NaNa implements Beauty &#123;</span><br><span class="line"></span><br><span class="line">    private Beauty beauty;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 通过构造方法传入目标对象</span><br><span class="line">     * @param beauty</span><br><span class="line">     */</span><br><span class="line">    public NaNa(Beauty beauty) &#123;</span><br><span class="line">        this.beauty = beauty;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void eat() &#123;</span><br><span class="line">        //调用目标对象上的吃饭方法</span><br><span class="line">        beauty.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建你的类，里面添加交朋友的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package com.monkey1024.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line">public class You &#123;</span><br><span class="line"></span><br><span class="line">    private Beauty beauty;</span><br><span class="line"></span><br><span class="line">    public You(Beauty beauty) &#123;</span><br><span class="line">        this.beauty = beauty;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 交朋友</span><br><span class="line">     */</span><br><span class="line">    public void makeFriend() &#123;</span><br><span class="line">        beauty.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建测试类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package com.monkey1024.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        XiaoMan xiaoMan = new XiaoMan();</span><br><span class="line">        NaNa naNa = new NaNa(xiaoMan);</span><br><span class="line">        You you = new You(naNa);</span><br><span class="line"></span><br><span class="line">        you.makeFriend();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><p>动态代理它可以直接给某一个目标对象生成一个代理对象，而不需要代理类存在。动态代理与静态代理原理是一样的，只是它没有具体的代理类，直接在程序运行时动态生成了一个代理对象。</p>
+<p>动态代理的技术实现：</p>
+<ul>
+<li>JDK提供的动态代理，底层使用反射原理，只能创建接口的代理。</li>
+<li>cglib，底层是通过使用一个小而快的字节码处理框架ASM，可以创建类和接口的代理。</li>
 </ul>
-<h3 id="使用代码方式演示事务"><a href="#使用代码方式演示事务" class="headerlink" title="使用代码方式演示事务"></a>使用代码方式演示事务</h3><blockquote>
-<p>代码里面的事务，主要是针对连接来的。 </p>
-<ol>
-<li>通过conn.setAutoCommit（false ）来关闭自动提交的设置。</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li>提交事务  conn.commit();</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li>回滚事务 conn.rollback();</li>
-</ol>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testTransaction()&#123;</span><br><span class="line">	</span><br><span class="line">	Connection conn = null;</span><br><span class="line">	PreparedStatement ps = null;</span><br><span class="line">	ResultSet rs = null;</span><br><span class="line">	try &#123;</span><br><span class="line">		conn = JDBCUtil.getConn();</span><br><span class="line">		</span><br><span class="line">		//连接，事务默认就是自动提交的。 关闭自动提交。</span><br><span class="line">		conn.setAutoCommit(false);</span><br><span class="line">		</span><br><span class="line">		String sql = &quot;update account set money = money - ? where id = ?&quot;;</span><br><span class="line">		ps = conn.prepareStatement(sql);</span><br><span class="line">		</span><br><span class="line">		//扣钱， 扣ID为1 的100块钱</span><br><span class="line">		ps.setInt(1, 100);</span><br><span class="line">		ps.setInt(2, 1);</span><br><span class="line">		ps.executeUpdate();</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="事务-1"><a href="#事务-1" class="headerlink" title="事务"></a>事务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用命令行演示</span><br><span class="line"></span><br><span class="line">使用代码演示</span><br></pre></td></tr></table></figure>
-
-<p>脏读、</p>
-<p>不可重复读、</p>
-<p>幻读<br>丢失更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">悲观锁</span><br><span class="line">乐观锁</span><br><span class="line"></span><br><span class="line">4个隔离级别</span><br><span class="line">	读未提交</span><br><span class="line">	读已提交</span><br><span class="line">	可重复读</span><br><span class="line">	可串行化</span><br></pre></td></tr></table></figure>
-
-<h2 id="数据连接池"><a href="#数据连接池" class="headerlink" title="数据连接池"></a>数据连接池</h2><ul>
-<li><p>DBCP</p>
-<p>不使用配置</p>
-<p>使用配置</p>
+<p>jdk的动态代理：</p>
+<ul>
+<li>Proxy.newProxyInstance():产生代理接口的实例。仅能代理实现至少一个接口的类<ul>
+<li>ClassLoader：类加载器。即被代理的接口的类加载器。</li>
+<li>Class[] interface：被代理对象的父接口</li>
+<li>InvocationHandler：将要在代理中实现的功能写在该对象中</li>
+</ul>
 </li>
-<li><p>C3P0</p>
-<p>不使用配置</p>
-<p>使用配置 （必须掌握）</p>
-</li>
-<li><p>自定义连接池 </p>
-<p>装饰者模式</p>
+<li>InvocationHandler中的invoke方法：调用代理类的任何方法，此方法都会执行<ul>
+<li>Object proxy:代理对象自身的引用。</li>
+<li>Method method:当前被调用的方法。</li>
+<li>Object[] args:当前被调用方法用到的参数</li>
+</ul>
 </li>
 </ul>
-<h2 id="DBUtils"><a href="#DBUtils" class="headerlink" title="DBUtils"></a>DBUtils</h2><blockquote>
-<p>简化了我们的CRUD ， 里面定义了通用的CRUD方法。 </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">queryRunner.update();</span><br><span class="line">queryRunner.query</span><br></pre></td></tr></table></figure>
+<p>只需要将之前的测试类中的代码修改为下面的内容即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">package com.monkey1024.proxy.staticproxy;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import java.lang.reflect.InvocationHandler;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line">import java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Beauty xiaoMan = new XiaoMan();</span><br><span class="line"></span><br><span class="line">        //不需要自己创建代理了</span><br><span class="line">        //NaNa naNa = new NaNa(xiaoMan);</span><br><span class="line"></span><br><span class="line">        //由jdk动态的为你创建一个代理</span><br><span class="line">        Beauty proxy = (Beauty)Proxy.newProxyInstance(xiaoMan.getClass().getClassLoader(), xiaoMan.getClass().getInterfaces(), new InvocationHandler() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">                System.out.println(&quot;吃饭之前的准备&quot;);</span><br><span class="line">                Object invoke = method.invoke(xiaoMan);</span><br><span class="line">                System.out.println(&quot;吃饭之后的结果&quot;);</span><br><span class="line">                return invoke;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        You you = new You(proxy);</span><br><span class="line"></span><br><span class="line">        you.makeFriend();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p><strong>调用有参数的方法</strong><br>在彼此认识之后，你打算送小曼礼物，此时将之前的代码稍作修改：</p>
+<p>在接口中新增gift方法，count表示礼物的数量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void gift(int count);</span><br></pre></td></tr></table></figure>
 
+<p>在XiaoMan的类中添加gift方法的重写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void gift(int count) &#123;</span><br><span class="line">    System.out.println(&quot;收到&quot; + count + &quot;礼物&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在You类中添加show方法用来送礼物：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 展示</span><br><span class="line"> */</span><br><span class="line">public void show()&#123;</span><br><span class="line">    beauty.gift(10);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改之前的测试类如下，送礼物的时候，为了感谢代理人，所以每次会把礼物分一半给代理人：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Beauty xiaoMan = new XiaoMan();</span><br><span class="line"></span><br><span class="line">    //不需要自己创建代理了</span><br><span class="line">    //NaNa naNa = new NaNa(xiaoMan);</span><br><span class="line"></span><br><span class="line">    //由jdk动态的为你创建一个代理</span><br><span class="line">    Beauty proxy = (Beauty)Proxy.newProxyInstance(xiaoMan.getClass().getClassLoader(), xiaoMan.getClass().getInterfaces(), new InvocationHandler() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">            System.out.println(&quot;准备&quot;);</span><br><span class="line">            Object invoke = null;</span><br><span class="line">            if (&quot;gift&quot;.equals(method.getName()))&#123;</span><br><span class="line">                invoke = method.invoke(xiaoMan,new Object[]&#123;(Integer)args[0]/2&#125;);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                invoke = method.invoke(xiaoMan);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            System.out.println(&quot;结果&quot;);</span><br><span class="line">            return invoke;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    You you = new You(proxy);</span><br><span class="line"></span><br><span class="line">    you.makeFriend();</span><br><span class="line">    you.show();</span><br></pre></td></tr></table></figure>
     </article>
     <!-- license  -->
     
@@ -465,16 +462,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/05/24/工厂设计模式/" title="工厂设计模式">
-                    <div class="nextTitle">工厂设计模式</div>
+                <a href="/2019/05/24/images/" title="Image">
+                    <div class="nextTitle">Image</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/05/24/笔记（一）/" title="Hexo学习（一）">
-                    <div class="prevTitle">Hexo学习（一）</div>
+                <a href="/2019/05/24/工厂设计模式/" title="工厂设计模式">
+                    <div class="prevTitle">工厂设计模式</div>
                 </a>
             
         </li>
@@ -594,7 +591,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#事务-amp-数据库连接池-amp-DBUtils"><span class="toc-number">1.</span> <span class="toc-text">事务&amp;数据库连接池&amp;DBUtils</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#事务"><span class="toc-number">1.1.</span> <span class="toc-text">事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用命令行方式演示事务。"><span class="toc-number">1.1.1.</span> <span class="toc-text">使用命令行方式演示事务。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用代码方式演示事务"><span class="toc-number">1.1.2.</span> <span class="toc-text">使用代码方式演示事务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">2.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#事务-1"><span class="toc-number">2.1.</span> <span class="toc-text">事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据连接池"><span class="toc-number">2.2.</span> <span class="toc-text">数据连接池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DBUtils"><span class="toc-number">2.3.</span> <span class="toc-text">DBUtils</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#代理模式简介"><span class="toc-number">1.</span> <span class="toc-text">代理模式简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态代理"><span class="toc-number">2.</span> <span class="toc-text">静态代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态代理"><span class="toc-number">3.</span> <span class="toc-text">动态代理</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
