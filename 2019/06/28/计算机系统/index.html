@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Hexo学习（一） · fi3estudy&#39;s Studio of NJUST</title>
+    <title>线程与进程笔记 · fi3estudy&#39;s Studio of NJUST</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">Mr.Lee&#39;s Blog.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Hexo学习（一）</a>
+                <a href="#" class="post-name">线程与进程笔记</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Hexo学习（一）
+            线程与进程笔记
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">487</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/05/24</span>
+                    <span class="post-intro-time">2019/06/28</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,29 +395,15 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="Hexo学习（一）"><a href="#Hexo学习（一）" class="headerlink" title="Hexo学习（一）"></a>Hexo学习（一）</h1><h1 id="此文介绍Hexo建站的流程…"><a href="#此文介绍Hexo建站的流程…" class="headerlink" title="此文介绍Hexo建站的流程…"></a><u><strong>此文介绍Hexo建站的流程…</strong></u></h1><h2 id="特别鸣谢-指导人-CodeSheep-从此打开新的大门"><a href="#特别鸣谢-指导人-CodeSheep-从此打开新的大门" class="headerlink" title="特别鸣谢 指导人 CodeSheep 从此打开新的大门"></a>特别鸣谢 指导人 <a href="https://space.bilibili.com/384068749" target="_blank" rel="noopener">CodeSheep</a> 从此打开新的大门</h2><p><strong>let‘s go</strong> </p>
-<h2 id="01-安装-Node-j"><a href="#01-安装-Node-j" class="headerlink" title="01.安装 Node.j"></a>01.安装 Node.j</h2><p>打开<a href="https://nodejs.org/" target="_blank" rel="noopener">官方网站</a> </p>
-<p><a href="https://nodejs.org" target="_blank" rel="noopener">https://nodejs.org</a> </p>
-<p><img src="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/267b6d6d335cf62907c70321a1cbd3b.png" alt></p>
-<h2 id="02-安装-Git"><a href="#02-安装-Git" class="headerlink" title="02.安装 Git"></a><code>02.安装 Git</code></h2><p>打开<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">官方网站</a> <code>https://git-scm.com/downloads</code> 然后我们选择windows版本的下载 </p>
-<p><img src="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/9bbee71932a2447533abd0a4c72aa9d.png" alt></p>
-<p><a href="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/b6b73bbf60b6f803973119b88274ef6.png" target="_blank" rel="noopener"><br><img src="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/b6b73bbf60b6f803973119b88274ef6.png" alt="b6b73bbf60b6f803973119b88274ef6"></a><br>安装也是一直点下一步，安装官方默认的来就行，<br>完了，在开始菜单可以看到<br><a href="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/8e358bb7fb7a0d3e5ed1e5b134b3656.png" target="_blank" rel="noopener"><img src="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/8e358bb7fb7a0d3e5ed1e5b134b3656.png" alt="8e358bb7fb7a0d3e5ed1e5b134b3656"></a></p>
-<blockquote>
-<p>tips：这个Git Bash下载下来就相当于Linux中的终端窗口了，以后我们就用这个东东来打开终端。</p>
-</blockquote>
-<h1 id="03-安装hexo"><a href="#03-安装hexo" class="headerlink" title="03.安装hexo"></a>03.安装hexo</h1><p>新建一个文件夹，比如我这里建了 ==blog4==<br>打开你的文件夹，然后在空白处点鼠标的右键，选择 ==Git Bash Here==<br><a href="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/8ef3c037361abb7ad447b25d4b17561.png" target="_blank" rel="noopener"><img src="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/8ef3c037361abb7ad447b25d4b17561.png" alt="8ef3c037361abb7ad447b25d4b17561"></a><br>看看 ==node，npm== 是否安装成功，没有成功的就重新安装node。</p>
-<h3 id="我们需要先来安装个cnpm提高速度，以后下载什么东西都用cnpm"><a href="#我们需要先来安装个cnpm提高速度，以后下载什么东西都用cnpm" class="headerlink" title="我们需要先来安装个cnpm提高速度，以后下载什么东西都用cnpm"></a>我们需要先来安装个cnpm提高速度，以后下载什么东西都用cnpm</h3><p>在上面终端继续输入<br><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code><br><strong>测试cnpm-成功！</strong><br><a href="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/78f8c8ad15c264bcbe15f787bfd73bc.png" target="_blank" rel="noopener"><img src="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/78f8c8ad15c264bcbe15f787bfd73bc.png" alt="78f8c8ad15c264bcbe15f787bfd73bc"></a></p>
-<p>==完成之后安装hexo==<br><code>cnpm install -g hexo-cli</code></p>
-<p>验证是否安装成功<br><code>hexo -v</code><br>出现,说明成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">hexo: 3.8.0</span><br><span class="line">hexo-cli: 1.1.0</span><br><span class="line">os: Windows_NT 10.0.17134 win32 x64</span><br><span class="line">http_parser: 2.8.0</span><br><span class="line">node: 10.15.3</span><br><span class="line">v8: 6.8.275.32-node.51</span><br><span class="line">uv: 1.23.2</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">ares: 1.15.0</span><br><span class="line">modules: 64</span><br><span class="line">nghttp2: 1.34.0</span><br><span class="line">napi: 3</span><br><span class="line">openssl: 1.1.0j</span><br><span class="line">icu: 62.1</span><br><span class="line">unicode: 11.0</span><br><span class="line">cldr: 33.1</span><br><span class="line">tz: 2018e</span><br></pre></td></tr></table></figure>
+        <p>银行家算法：避免死锁</p>
+<p>资源有序分配法：预防死锁</p>
+<p>资源分配图化简法：检测死锁</p>
+<p>撤销进程法：解决死锁</p>
+<p>-———————————————————————————–</p>
+<p>进程和线程的区别<br>进程是执行着的应用程序，而线程是进程内部的一个执行序列。一个进程可以有多个线程。线程又叫做轻量级进程。<br>进程和线程的主要差别在于它们是不同的操作系统资源管理方式。进程有独立的地址空间，一个进程崩溃后，在保护模式下不会对其它进程产生影响，<br>而线程只是一个进程中的不同执行路径。线程有自己的堆栈和局部变量，但线程之间没有单独的地址空间，一个线程死掉就等于整个进程死掉，<br>所以多进程的程序要比多线程的程序健壮，但在进程切换时，耗费资源较大，效率要差一些。<br>但对于一些要求同时进行并且又要共享某些变量的并发操作，只能用线程，不能用进程。<br>进程与线程的区别：<br>1.进程有独立的进程空间，进程中的数据存放空间（堆空间和栈空间）是独立的。<br>2.线程的堆空间是共享的，栈空间是独立的，线程消耗的资源也比进程小，二者之间可以相互影响。<br>线程的数据交换更快，因为他们在同一地址空间内<br>多进程里，子进程可获得父进程的所有堆和栈的数据；<br>进程比线程更健壮，但是进程比线程更容易杀掉<br>-————————————————————————————————————————<br>操作系统之进程的几种状态<br>就绪(Ready)状态:当进程已分配到除CPU以外的所有必要资源后，只要再获得CPU，便可立即执行，进程这时的状态称为就绪状态。<br>执行状态:进程已获得CPU，其程序正在执行。在单处理机系统中，只有一个进程处于执行状态； 在多处理机系统中，则有多个进程处于执行状态。<br>阻塞状态:正在执行的进程由于发生某事件而暂时无法继续执行时，便放弃处理机而处于暂停状态，亦即进程的执行受到阻塞，把这种暂停状态称为阻塞状态.<br><img src="https://img-blog.csdn.net/20170314185119053?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcmVlZDE5OTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"><br>-————————————————————————————————————–<br>操作系统中的死锁被定义为系统中两个或者多个进程无限期地等待永远不会发生的条件，系统处于停滞状态，这就是死锁。<br>产生死锁的四个必要条件：<br>（1） 互斥条件：一个资源每次只能被一个进程使用。<br>（2） 请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放。<br>（3） 不剥夺条件:进程已获得的资源，在末使用完之前，不能强行剥夺。<br>（4） 循环等待条件:若干进程之间形成一种头尾相接的循环等待资源关系。<br>如何确保N个线程可以访问N个资源同时又不导致死锁？<br>使用多线程的时候，一种非常简单的避免死锁的方式就是：指定获取锁的顺序，并强制线程按照指定的顺序获取锁。因此，<br>如果所有的线程都是以同样的顺序加锁和释放锁，就不会出现死锁了。<br>-——————————————————————————————————<br>线程间通信:共享存储.消息传递.管道通信<br>共享存储<br>         1.低级方式:基于数据结构的共享<br>         2.高级方式:基于存储区的共享<br>消息传递<br>         1.直接通信方式:直接把消息挂到接收进程的消息队列<br>         2.间接通信方式:找到某个中间实体.接收进程找实体接收消息.类似电子邮件.<br>管道通信<br>         利用一种特殊的pipe文件连接两个进程,管道只能单向传输(半双工)当缓冲区还有数据时,写进程不会往缓冲区写数据.<br>java中的线程通信<br>  1.同步 synchronized   共享存储<br>  2.while轮询</p>
+<h2 id="3-wait-notify-机制"><a href="#3-wait-notify-机制" class="headerlink" title="  3.wait().notify()机制"></a>  3.wait().notify()机制</h2><p>并发和并行<br>   并发:一个处理器同时处理多个任务.(根本不可能同时进行一个以上的线程,只能把cpu运行时间分成若干个时间段,<br>   再讲时间段分配给各个线程执行.在一个线程运行期间,其他线程处于挂起状态)<br>   并行:多个处理器或者多核处理器同时处理多个不同的任务.<br>-———————————————————————————-<br>线程的生命周期<br>线程是一个动态执行的过程，它也有一个从产生到死亡的过程。<br>(1)生命周期的五种状态<br>   新建（new Thread）<br>当创建Thread类的一个实例（对象）时，此线程进入新建状态（未被启动）。<br>例如：Thread  t1=new Thread();<br>就绪（runnable）<br>线程已经被启动，正在等待被分配给CPU时间片，也就是说此时线程正在就绪队列中排队等候得到CPU资源。例如：t1.start();<br>运行（running）<br>线程获得CPU资源正在执行任务（run()方法），此时除非此线程自动放弃CPU资源或者有优先级更高的线程进入，线程将一直运行到结束。<br>死亡（dead）<br>当线程执行完毕或被其它线程杀死，线程就进入死亡状态，这时线程不可能再进入就绪状态等待执行。<br>自然终止：正常运行run()方法后终止<br>异常终止：调用stop()方法让一个线程终止运行<br>堵塞（blocked）<br>由于某种原因导致正在运行的线程让出CPU并暂停自己的执行，即进入堵塞状态。<br>正在睡眠：用sleep(long t) 方法可使线程进入睡眠方式。一个睡眠着的线程在指定的时间过去可进入就绪状态。<br>正在等待：调用wait()方法。（调用motify()方法回到就绪状态）<br>被另一个线程所阻塞：调用suspend()方法。（调用resume()方法恢复）<br>2.常用方法<br>void run()   创建该类的子类时必须实现的方法<br>void start() 开启线程的方法<br>static void sleep(long t) 释放CPU的执行权，不释放锁<br>static void sleep(long millis,int nanos)<br>final void wait()释放CPU的执行权，释放锁<br>final void notify()<br>static void yied()可以对当前线程进行临时暂停（让线程将资源释放出来）<br>3.（1）结束线程原理：就是让run方法结束。而run方法中通常会定义循环结构，所以只要控制住循环即可<br>(2)方法—-可以boolean标记的形式完成，只要在某一情况下将标记改变，让循环停止即可让线程结束<br>（3）public final void join()//让线程加入执行，执行某一线程join方法的线程会被冻结，等待某一线程执行结束，该线程才会恢复到可运行状态<br>\4. 临界资源：多个线程间共享的数据称为临界资源<br>（1）互斥锁<br>a.每个对象都对应于一个可称为“互斥锁”的标记，这个标记用来保证在任一时刻，只能有一个线程访问该对象。<br>b.Java对象默认是可以被多个线程共用的，只是在需要时才启动“互斥锁”机制，成为专用对象。<br>c.关键字synchronized用来与对象的互斥锁联系<br>d.当某个对象用synchronized修饰时，表明该对象已启动“互斥锁”机制，在任一时刻只能由一个线程访问，即使该线程出现堵塞，<br>该对象的被锁定状态也不会解除，其他线程任不能访问该对象。</p>
+<hr>
 
-<p>首先看看当前路径命令<code>pwd</code><br>结果为<br><code>Administrator@XTZ-01804162214 MINGW64 ~/Desktop/blog4</code><br>然后我们<br>运行命令，这步是关键，主要是建立整个项目，这里我的文件夹名字是kuku，文件夹位置是桌面上。<br><code>hexo init</code><br>结果如下：<br><a href="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/9b16a4df7c895bf11b80a28febb2034.png" target="_blank" rel="noopener"><img src="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/9b16a4df7c895bf11b80a28febb2034.png" alt="9b16a4df7c895bf11b80a28febb2034"></a><br><a href="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/0362495010af616ba37079131790026.png" target="_blank" rel="noopener"><img src="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/0362495010af616ba37079131790026.png" alt="0362495010af616ba37079131790026"></a></p>
-<h1 id="04-运行测试"><a href="#04-运行测试" class="headerlink" title="04.运行测试"></a>04.运行测试</h1><p>这里我们经常用到的有三个命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean #用来清理缓存文件</span><br><span class="line">hexo g      #生成文件</span><br><span class="line">hexo  s     #运行本地服务器</span><br><span class="line">hexo  d   #上传到服务器</span><br></pre></td></tr></table></figure>
-
-<p>我们运行<br><code>hexo s</code><br><a href="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/1c0defb18292bc09011e48e2f7992b1.png" target="_blank" rel="noopener"><img src="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/1c0defb18292bc09011e48e2f7992b1.png" alt="1c0defb18292bc09011e48e2f7992b1"></a></p>
-<p>打开浏览器，输入<code>localhost:4000</code>,看到<br><a href="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/3a9c7bbce1acbabfaade371c961c667.png" target="_blank" rel="noopener"><img src="https://caiyantao.gitee.io/2019/04/13/Hexo-%E4%B8%80/3a9c7bbce1acbabfaade371c961c667.png" alt="3a9c7bbce1acbabfaade371c961c667"></a></p>
-<h2 id="说明本地环境搭建完成。。。"><a href="#说明本地环境搭建完成。。。" class="headerlink" title="说明本地环境搭建完成。。。"></a>说明本地环境搭建完成。。。</h2><h2 id="其余的内容请看下一篇文章。"><a href="#其余的内容请看下一篇文章。" class="headerlink" title="其余的内容请看下一篇文章。"></a>其余的内容请看下一篇文章。</h2>
     </article>
     <!-- license  -->
     
@@ -426,16 +412,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/05/24/代理设计模式/" title="java静态代理与动态代理">
-                    <div class="nextTitle">java静态代理与动态代理</div>
+                <a href="/2019/06/29/网络/" title="计算机网络笔记">
+                    <div class="nextTitle">计算机网络笔记</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/05/24/工厂设计模式/" title="工厂设计模式">
-                    <div class="prevTitle">工厂设计模式</div>
+                <a href="/2019/06/13/双指针/" title="双指针题">
+                    <div class="prevTitle">双指针题</div>
                 </a>
             
         </li>
@@ -555,7 +541,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo学习（一）"><span class="toc-number">1.</span> <span class="toc-text">Hexo学习（一）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#此文介绍Hexo建站的流程…"><span class="toc-number">2.</span> <span class="toc-text">此文介绍Hexo建站的流程…</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#特别鸣谢-指导人-CodeSheep-从此打开新的大门"><span class="toc-number">2.1.</span> <span class="toc-text">特别鸣谢 指导人 CodeSheep 从此打开新的大门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#01-安装-Node-j"><span class="toc-number">2.2.</span> <span class="toc-text">01.安装 Node.j</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-安装-Git"><span class="toc-number">2.3.</span> <span class="toc-text">02.安装 Git</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#03-安装hexo"><span class="toc-number">3.</span> <span class="toc-text">03.安装hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#我们需要先来安装个cnpm提高速度，以后下载什么东西都用cnpm"><span class="toc-number">3.0.1.</span> <span class="toc-text">我们需要先来安装个cnpm提高速度，以后下载什么东西都用cnpm</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#04-运行测试"><span class="toc-number">4.</span> <span class="toc-text">04.运行测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明本地环境搭建完成。。。"><span class="toc-number">4.1.</span> <span class="toc-text">说明本地环境搭建完成。。。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其余的内容请看下一篇文章。"><span class="toc-number">4.2.</span> <span class="toc-text">其余的内容请看下一篇文章。</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-wait-notify-机制"><span class="toc-number">1.</span> <span class="toc-text">  3.wait().notify()机制</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
